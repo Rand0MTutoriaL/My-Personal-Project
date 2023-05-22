@@ -1,21 +1,8 @@
-import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 import xml.etree.ElementTree as ET
 from lxml import etree
-from time import sleep
-
-
-def win_center_pos(window, win_size):
-    screen_width = window.winfo_screenwidth()
-    screen_height = window.winfo_screenheight()
-    pos = (int((screen_width/2) - (win_size[0]/2)), int((screen_height/2) - (win_size[1]/2)))
-    return pos
-
-
-def sizing_positioning(size, pos):
-    return f"{size[0]}x{size[1]}+{pos[0]}+{pos[1]}"
-
+from additionfuncs import *
 
 class MainWindow:
     def __init__(self, window_size=None, original=True):
