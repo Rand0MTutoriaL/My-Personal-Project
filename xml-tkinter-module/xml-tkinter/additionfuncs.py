@@ -1,3 +1,29 @@
+import pkg_resources
+import subprocess
+
+# Check and automatically install unavailable package.
+
+def get_available_packages():
+    available_packages = list()
+    installed_packages = pkg_resources.working_set
+    for package in installed_packages:
+        available_packages.append(package.key)
+    return available_packages
+
+def checking_package(package_name):
+    packages = get_available_packages()
+    for package in packages:
+        if package == package_name:
+            return True
+    return False
+
+def install_package(package_name):
+    try:
+        subprocess.check_call(['pip', 'install', package_name])
+        print(f"Successfully installed {package_name}")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to install {package_name}: {str(e)}")
+
 from tkinter import *
 from tkinter import font
 
