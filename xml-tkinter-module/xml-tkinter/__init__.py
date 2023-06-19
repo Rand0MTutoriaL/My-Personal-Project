@@ -5,4 +5,4 @@ if checking_package("lxml"):
 else:
     install_package("lxml")
 
-import conversion
+import WindowType

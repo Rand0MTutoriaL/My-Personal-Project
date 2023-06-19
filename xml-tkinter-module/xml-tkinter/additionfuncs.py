@@ -1,5 +1,7 @@
 import pkg_resources
 import subprocess
+import types
+from lxml import etree
 
 # Check and automatically install unavailable package.
 
@@ -69,3 +71,23 @@ def show_all_font_styles():
     frame.bind("<Configure>", lambda e, canvas=canvas: onFrameConfigure(canvas))
     fill_frame(frame)
     win.mainloop()
+
+
+def parsing_XML(xml):
+    try:
+        parsed_xml = etree.fromstring(xml)
+        return parsed_xml
+    except Exception as e:
+        raise Exception("Incorrect XML syntax found: ", str(e))
+    
+
+def update_component_dict(old_dict, objTag, obj, tkobj):
+    old_dict.update({objTag:
+    {
+        "Parent": obj.getparent().tag,
+        "Object": tkobj
+    }})
+
+
+def rgb(red, green, blue):
+    return "#{:02x}{:02x}{:02x}".format(red, green, blue)
